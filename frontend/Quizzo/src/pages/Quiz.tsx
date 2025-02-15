@@ -55,7 +55,7 @@ export default function Quiz() {
   
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:3000/api/quizzes/${id}`, {
+        const response = await axios.get(import.meta.env.BACKEND_URL+ `/api/quizzes/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const { title, description, questions } = response.data;
