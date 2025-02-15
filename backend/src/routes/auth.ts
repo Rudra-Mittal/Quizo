@@ -41,7 +41,7 @@ router.post('/signup', async (req:any, res:any) => {
     
     res.status(201).json({ token });
   } catch (error) {
-    console.log(error)
+    // console.log(error)
     res.status(400).json({ message: 'Invalid request' });
   }
 });
@@ -49,7 +49,7 @@ router.post('/signup', async (req:any, res:any) => {
 router.post('/login', async (req:any, res:any) => {
   try {
     const { username, password } = userSchema.parse(req.body);
-    console.log(username,password,pool);
+    // console.log(username,password,pool);
     
     const result = await pool.query(
       'SELECT * FROM users WHERE username = $1',

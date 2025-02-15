@@ -28,7 +28,7 @@ router.use(authMiddleware);
 // Create quiz with questions
 router.post('/', async (req: AuthRequest, res) => {
   try {
-    console.log('req.user?.id', req.body.questions[0]);
+    // console.log('req.user?.id', req.body.questions[0]);
     const { title, description, questions } = quizSchema.parse(req.body);
 
     // Start a transaction
@@ -75,7 +75,7 @@ router.post('/', async (req: AuthRequest, res) => {
       client.release();
     }
   } catch (error) {
-    console.error('Error creating quiz:', error);
+    // console.error('Error creating quiz:', error);
     res.status(400).json({ message: 'Invalid request' });
   }
 });
@@ -193,7 +193,7 @@ router.put('/:id', async (req: any, res:any) => {
       client.release();
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(400).json({ message: 'Invalid request' });
   }
 });
