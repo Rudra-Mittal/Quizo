@@ -39,7 +39,7 @@ To get started with Quizo, visit the live link and sign up for an account. Once 
 
 - **Frontend**: [React](https://reactjs.org/)
 - **Backend**: [Node.js](https://nodejs.org/)
-- **Database**: [MongoDB](https://www.mongodb.com/)
+- **Database**: [PostgreSQL](https://www.postgresql.org/)
 - **Deployment**: [Vercel](https://vercel.com/), [Railway](https://railway.app/)
 
 ## Contributing
@@ -52,4 +52,4 @@ This project is licensed under the MIT License.
 
 ---
 
-Happy Teaching!
+Made with love!
