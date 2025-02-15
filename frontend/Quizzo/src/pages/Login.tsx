@@ -5,11 +5,12 @@ import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/card';
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { XCircle } from "lucide-react";
+import { Loader2, XCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Login() {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -19,7 +20,7 @@ export default function Login() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-    console.log(import.meta.env.VITE_BACKEND_URL)
+    setIsLoading(true);
     try {
       const response = await axios.post(import.meta.env.VITE_BACKEND_URL+'/api/auth/login', formData);
       localStorage.setItem('token', response.data.token);
@@ -31,6 +32,8 @@ export default function Login() {
       } else {
         setError('An unexpected error occurred. Please try again.');
       }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -85,12 +88,20 @@ export default function Login() {
               />
             </div>
             <Button 
-              type="submit" 
-              className="w-full"
-              variant={error ? "destructive" : "default"}
-            >
-              Login
-            </Button>
+          type="submit" 
+          className="w-full"
+          variant={error ? "destructive" : "default"}
+          disabled={isLoading}
+        >
+          {isLoading ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Logging in...
+            </>
+          ) : (
+            'Login'
+          )}
+        </Button>
             <p className="text-center text-sm text-gray-600">
               Don't have an account?{' '}
               <button
